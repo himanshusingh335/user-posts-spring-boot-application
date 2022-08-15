@@ -1,1 +1,0 @@
-insert into User values(1,sysdate(),'AB');

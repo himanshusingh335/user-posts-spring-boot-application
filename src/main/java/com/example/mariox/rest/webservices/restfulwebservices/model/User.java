@@ -1,16 +1,19 @@
 package com.example.mariox.rest.webservices.restfulwebservices.model;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 @Entity
 public class User {
 	
-	public User() {
+	protected User() {
 		super();
 	}
 
@@ -20,6 +23,8 @@ public class User {
 	private String name;
 	@Past
 	private Date birthDate;
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	private List<Posts> posts;
 	
 	public Integer getId() {
 		return id;
@@ -45,14 +50,13 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public User(Integer id, String name, Date birthDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.birthDate = birthDate;
+	public List<Posts> getPosts() {
+		return posts;
 	}
-	
-	
-	
+
+	public void setPosts(List<Posts> posts) {
+		this.posts = posts;
+	}
+
 
 }
